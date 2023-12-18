@@ -1,4 +1,6 @@
 ﻿
+using PaymentContext.Domain.ValueObjects;
+
 namespace PaymentContext.Domain.Entities;
 
 public class CreditCardPayment : Payment
@@ -9,9 +11,9 @@ public class CreditCardPayment : Payment
         decimal total,
         decimal totalPaid,
         string owner,
-        string document,
-        string address,
-        string email
+        Document document,
+        Address address,
+        Email email
         ) : base(paidDate, expireDate, total, totalPaid, owner, document, address, email)
     { }
 
