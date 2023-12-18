@@ -1,10 +1,11 @@
-namespace PaymentContext.Tests;
+﻿namespace PaymentContext.Tests.Entities;
 
 [TestClass]
-public class UnitTest1
+public class StudentTests
 {
     [TestMethod]
     public void TestMethod1()
     {
+
     }
 }
