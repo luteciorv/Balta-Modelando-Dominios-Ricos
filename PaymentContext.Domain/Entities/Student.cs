@@ -10,6 +10,8 @@ public class Student : Entity
         Name = name;
         Document = document;
         Email = email;
+
+        AddNotifications(name, document, email);
     }
 
     public Name Name { get; private set; } 
