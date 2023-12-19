@@ -12,12 +12,12 @@ public class Name : ValueObject
 
         AddNotifications(new Contract<Name>()
             .Requires()
-            .IsLowerThan(FirstName.Length, 3, nameof(FirstName), "O nome deve conter ao menos 3 caracteres")
-            .IsGreaterThan(FirstName.Length, 60, nameof(FirstName), "O nome deve conter até no máximo 60 caracteres")
+            .IsLowerThan(3, FirstName.Length, nameof(FirstName), "O nome deve conter ao menos 3 caracteres")
+            .IsGreaterThan(60, FirstName.Length, nameof(FirstName), "O nome deve conter até no máximo 60 caracteres")
 
             .Requires()
-            .IsLowerThan(LastName.Length, 3, nameof(LastName), "O sobrenome deve conter ao menos 3 caracteres")
-            .IsGreaterThan(LastName.Length, 60, nameof(LastName), "O sobrenome deve conter até no máximo 60 caracteres")
+            .IsLowerThan(3, LastName.Length, nameof(LastName), "O sobrenome deve conter ao menos 3 caracteres")
+            .IsGreaterThan(60, LastName.Length, nameof(LastName), "O sobrenome deve conter até no máximo 60 caracteres")
         );
     }
 

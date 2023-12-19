@@ -27,8 +27,11 @@ public class Student : Entity
     {
         var hasSubscriptionActive = Subscriptions.Any(s => s.Active);
 
-        if (hasSubscriptionActive)
-            AddNotification(nameof(Subscriptions), "O aluno já possui alguma assinatura ativa");
+        AddNotifications(new Contract<Student>()
+            .Requires()
+            .AreNotEquals(0, subscription.Payments.Count, nameof(subscription.Payments), "Esta assinatura não possui nenhum pagamento associado")
+            .IsFalse(hasSubscriptionActive, nameof(Subscriptions), "O aluno já possui alguma assinatura ativa")
+        );
 
         _subscriptions.Add(subscription);
     }
