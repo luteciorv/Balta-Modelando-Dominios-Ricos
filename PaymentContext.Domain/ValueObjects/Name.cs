@@ -1,4 +1,5 @@
-﻿using PaymentContext.Shared.ValueObjects;
+﻿using Flunt.Validations;
+using PaymentContext.Shared.ValueObjects;
 
 namespace PaymentContext.Domain.ValueObjects;
 
@@ -9,11 +10,15 @@ public class Name : ValueObject
         FirstName = firstName;
         LastName = lastName;
 
-        if (string.IsNullOrWhiteSpace(FirstName)) 
-            AddNotification(nameof(FirstName), "Nome inválido");
+        AddNotifications(new Contract<Name>()
+            .Requires()
+            .IsLowerThan(FirstName.Length, 3, nameof(FirstName), "O nome deve conter ao menos 3 caracteres")
+            .IsGreaterThan(FirstName.Length, 60, nameof(FirstName), "O nome deve conter até no máximo 60 caracteres")
 
-        if (string.IsNullOrWhiteSpace(LastName)) 
-            AddNotification(nameof(LastName), "Sobrenome inválido");
+            .Requires()
+            .IsLowerThan(LastName.Length, 3, nameof(LastName), "O sobrenome deve conter ao menos 3 caracteres")
+            .IsGreaterThan(LastName.Length, 60, nameof(LastName), "O sobrenome deve conter até no máximo 60 caracteres")
+        );
     }
 
     public string FirstName { get; private set; }
